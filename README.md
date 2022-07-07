@@ -5,6 +5,9 @@
 - [Reactjs](https://pt-br.reactjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Nextjs](https://nextjs.org/)
+- [Next-Auth](https://next-auth.js.org/)
+- [Stripe](https://stripe.com/br)
+- [Faunadb](https://fauna.com/)
 
 ## ✋🏻 Pré-requisitos
 
