@@ -11,7 +11,7 @@ export const SubscribeButton = ({ priceId }: SubscribeButtonProps) => {
   const { data: session } = useSession();
 
   const handleSubscribe = async () => {
-    if (!session && !session.user) {
+    if (!session) {
       signIn("github");
       return;
     }
