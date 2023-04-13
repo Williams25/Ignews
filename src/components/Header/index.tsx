@@ -12,7 +12,7 @@ export const Header = () => {
           <Link href="#">
             <a className={styled.active}>Home</a>
           </Link>
-          <Link href="#">
+          <Link href="/posts">
             <a>Posts</a>
           </Link>
         </nav>
