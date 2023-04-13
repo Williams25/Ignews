@@ -9,7 +9,7 @@ export const Header = () => {
       <div className={styled.headerContent}>
         <Image src="/images/logo.svg" alt="ig.news" width="300" height="300" />
         <nav>
-          <Link href="#">
+          <Link href="/">
             <a className={styled.active}>Home</a>
           </Link>
           <Link href="/posts">

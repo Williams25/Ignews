@@ -8,7 +8,7 @@ import { prismicClient } from "services/prismic";
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <SessionProvider session={pageProps.session}>
+    <SessionProvider session={pageProps.session ?? false}>
       <PrismicProvider client={prismicClient}>
         <Head>
           <meta

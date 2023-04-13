@@ -19,6 +19,8 @@ export default NextAuth({
   callbacks: {
     signIn: async ({ account, user, profile }) => {
       try {
+        if (!user?.email)
+          throw new Error(`User ${user.name}, add public mail.`);
         await fauna.query(
           Q.If(
             Q.Not(
@@ -27,7 +29,7 @@ export default NextAuth({
               )
             ),
             Q.Create(Q.Collection("users"), {
-              data: { email: user.email },
+              data: { email: user?.email },
             }),
             Q.Get(Q.Match(Q.Index("user_by_email"), Q.Casefold(user.email)))
           )
@@ -35,7 +37,7 @@ export default NextAuth({
 
         return true;
       } catch (e) {
-        console.log(e);
+        console.error(e);
         return false;
       }
     },
