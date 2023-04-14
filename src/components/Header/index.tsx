@@ -1,7 +1,7 @@
 import { SignInButton } from "components/SignInButton";
 import Image from "next/image";
-import Link from "next/link";
 import styled from "./header.module.scss";
+import { ActiveLink } from "components/ActiveLink";
 
 export const Header = () => {
   return (
@@ -9,12 +9,12 @@ export const Header = () => {
       <div className={styled.headerContent}>
         <Image src="/images/logo.svg" alt="ig.news" width="300" height="300" />
         <nav>
-          <Link href="/">
-            <a className={styled.active}>Home</a>
-          </Link>
-          <Link href="/posts">
+          <ActiveLink href="/" activeClassName={styled.active}>
+            <a>Home</a>
+          </ActiveLink>
+          <ActiveLink href="/posts" activeClassName={styled.active}>
             <a>Posts</a>
-          </Link>
+          </ActiveLink>
         </nav>
 
         <SignInButton />
