@@ -12,6 +12,7 @@ type PostsProps = {
   href: string;
   tags: string[];
   first_publication_date: string;
+  updateAt: string;
   last_publication_date: string;
   slugs: string[];
   linked_documents: [];
@@ -52,30 +53,14 @@ const Posts = ({ posts }: PostsPageProps) => {
       <main className={styled.container}>
         <div className={styled.posts}>
           {posts.map((post) => (
-            <Link key={post.id} href={`post/${post.slugs[0]}`}>
+            <Link key={post.id} href={`/posts/${post.slugs[0]}`}>
               <a>
-                <time>{post.first_publication_date}</time>
+                <time>{post.updateAt}</time>
                 <strong>{post.data.title[0].text}</strong>
                 <p>{post.data.content_blog[0].description[0].text}</p>
               </a>
             </Link>
           ))}
-
-          <Link href="#">
-            <a>
-              <time>12 de março</time>
-              <strong>Title</strong>
-              <p>desc</p>
-            </a>
-          </Link>
-
-          <Link href="#">
-            <a>
-              <time>12 de março</time>
-              <strong>Title</strong>
-              <p>desc</p>
-            </a>
-          </Link>
         </div>
       </main>
     </>
@@ -84,10 +69,18 @@ const Posts = ({ posts }: PostsPageProps) => {
 
 export const getStaticProps: GetStaticProps<PostsPageProps> = async () => {
   const response = await prismicClient.getByType("publication");
+  const posts = response.results.map((post) => ({
+    ...post,
+    updateAt: new Date(post.last_publication_date).toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    }),
+  }));
 
   return {
     props: {
-      posts: response.results as unknown as PostsProps[],
+      posts: posts as unknown as PostsProps[],
     },
   };
 };
