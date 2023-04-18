@@ -24,14 +24,14 @@ const Post = ({ post }: PostPage) => {
         <article className={styled.post}>
           <h1>{post.title}</h1>
           <time>{post.updateAt}</time>
-        </article>
 
-        <div
-          className={styled.postContent}
-          dangerouslySetInnerHTML={{
-            __html: post.content,
-          }}
-        />
+          <div
+            className={styled.postContent}
+            dangerouslySetInnerHTML={{
+              __html: post.content,
+            }}
+          />
+        </article>
       </main>
     </>
   );
@@ -44,7 +44,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   const { slug } = params;
   const session = await getSession({ req });
 
-  if (!session.activeSubscription) {
+  if (!session?.activeSubscription) {
     return {
       redirect: {
         destination: "/",
@@ -101,7 +101,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       }
     ),
   };
-  console.log(session);
+
   return {
     props: { post },
   };

@@ -38,6 +38,16 @@
       }
     }
 
+    &.previewContent {
+      background: linear-gradient(var(--gray-100), transparent);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      & p, & ul {
+        user-select: none;
+      }
+    }
+
     & a {
       display: block;
       transition: color 0.2s linear;
@@ -52,5 +62,26 @@
       margin: 0 auto;
       aspect-ratio: auto;
     }
+  }
+
+  & .continueReading {
+    padding: 2rem;
+    text-align: center;
+    background-color: var(--gray-850);
+    border-radius: 100px;
+    font-size: 1.125rem;
+    font-weight: bold;
+    margin: 4rem 0 2rem;
+
+    a {
+      color: var(--yellow-500);
+      margin-left: 0.5rem;
+      transition: 0.2s linear;
+      
+      &:hover {
+        text-decoration: underline 2px;
+      }
+    }
+
   }
 }
